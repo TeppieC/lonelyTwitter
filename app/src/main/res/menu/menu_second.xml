@@ -3,7 +3,5 @@
     tools:context="ca.ualberta.cs.lonelytwitter.secondActivity">
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100" android:showAsAction="never" />
-    <item android:id="@+id/action_secondAct" android:title="Second Activity"
-        android:orderInCategory="100" android:showAsAction="never" />
 
 </menu>
