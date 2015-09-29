@@ -4,47 +4,49 @@ import java.io.IOException;
 import java.util.Date;
 
 /**
- * Created by teppie on 14/09/15.
- * We dont want to allow someone to go tweet.txt
- * We want to force them to call a method instead
+ * Created by joshua2 on 9/16/15.
  */
-public abstract class Tweet extends Object{
-    protected String text; // give access to child class
-    private Date date;
+public abstract class Tweet extends Object implements Tweetable {
+    private String text;
+    protected Date date;
 
-    public Tweet(String text, Date date) {
-        //super();
-        this.text = text;
+    public Tweet(String tweet, Date date) throws TweetTooLongException {
+        this.setText(tweet);
         this.date = date;
     }
 
-    public Tweet(String text) {
-        this.text = text;
-        date = new Date();
+    public Tweet(String tweet) throws TweetTooLongException {
+        this.setText(tweet);
+        this.date = new Date();
     }
 
     public String getText() {
         return text;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    //x.y in java is basically x.>y in C
-
-    public void setText(String text) throws IOException{
+    public void setText(String text) throws TweetTooLongException {
         if (text.length() <= 140) {
             this.text = text;
         } else {
-            throw new IOException("Tweet was too long");
+            throw new TweetTooLongException();
         }
+    }
+
+    public Date getDate() {
+        return date;
     }
 
     public void setDate(Date date) {
         this.date = date;
     }
 
-    // every class should have this method
     public abstract Boolean isImportant();
+
+    @Override
+    public String toString(){
+        return date.toString() + " | " + text;
+    }
+
+
+
 }

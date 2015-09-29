@@ -3,18 +3,18 @@ package ca.ualberta.cs.lonelytwitter;
 import java.util.Date;
 
 /**
- * Created by teppie on 14/09/15.
+ * Created by joshua2 on 9/16/15.
  */
-public class NormalTweet extends Tweet implements Tweetable{
-    public NormalTweet(String text, Date date) {
-        super(text, date);
+public class NormalTweet extends Tweet {
+    public NormalTweet(String tweet, Date date) {
+        super(tweet, date);
     }
 
-    public NormalTweet(String text) {
-        super(text);
+    public NormalTweet(String tweet) {
+        super(tweet);
     }
 
-    public Boolean isImportant(){
+    public Boolean isImportant() {
         return Boolean.FALSE;
     }
 }

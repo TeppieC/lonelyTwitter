@@ -1,25 +1,28 @@
 package ca.ualberta.cs.lonelytwitter;
 
-import java.io.IOException;
 import java.util.Date;
 
 /**
- * Created by teppie on 14/09/15.
+ * Created by joshua2 on 9/16/15.
  */
-public class ImportantTweet extends Tweet implements Tweetable{
-    public ImportantTweet(String tweet, Date date){
+public class ImportantTweet extends Tweet {
+    public ImportantTweet(String tweet, Date date) {
         super(tweet, date);
+        this.setText(tweet);
+        this.date = date;
     }
 
-    public ImportantTweet(String text) throws IOException{
-        // this.text = text; as long as text in Tweet is protected
-        super(text);
-        this.setText(text);
-        //Date date = new Date();
+    public ImportantTweet(String tweet) {
+        super(tweet);
+    }
+
+    public Boolean isImportant() {
+        return Boolean.TRUE;
     }
 
     @Override
-    public Boolean isImportant(){
-        return Boolean.TRUE;
+    public String getText() {
+        return "!!!" + super.getText();
     }
+
 }
