@@ -16,6 +16,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -56,6 +57,7 @@ public class LonelyTwitterActivity extends Activity {
 				adapter.notifyDataSetChanged();
 			}
 		});
+
 	}
 
 	@Override
@@ -77,7 +79,7 @@ public class LonelyTwitterActivity extends Activity {
 			BufferedReader in = new BufferedReader(new InputStreamReader(fis));
 			Gson gson = new Gson();
 			// Following line based on https://google.gson.googlecode.com/svn
-			Type listType = new TypeToken<ArrayList<NormalTweet>>() {}.getType();
+			Type listType = new TypeToken<ArrayList<NormalTweet>>() {}.getType(); // get type
 			tweets = gson.fromJson(in, listType);
 
 		} catch (FileNotFoundException e) {
