@@ -5,13 +5,45 @@ import android.test.ActivityInstrumentationTestCase2;
 import junit.framework.TestCase;
 
 import java.security.PublicKey;
+import java.util.ArrayList;
 
 /**
  * Created by teppie on 28/09/15.
  */
-public class TweetListTest extends ActivityInstrumentationTestCase2 {
+public class TweetListTest extends ActivityInstrumentationTestCase2 implements MyObservable{
+    private boolean wasNotified = Boolean.FALSE;
+
+    private volatile ArrayList<MyObserver> observers = new ArrayList<MyObserver>();
+
     public TweetListTest(){
         super(ca.ualberta.cs.lonelytwitter.LonelyTwitterActivity.class);
+    }
+
+    public void addObserver(MyObserver observer){
+        observers.add(observer);
+    }
+
+    public void myNotify(Object observervable){
+        wasNotified = Boolean.TRUE;
+    }
+
+    public void testAddObserverr(){
+        TweetList list = new TweetList();
+        list.addObserver(this); // list is bounded with a observer
+        wasNotified = Boolean.FALSE;
+        list.addTweet(new NormalTweet("test")); //list was changed
+        // at this point we expect to be notified
+        assertTrue(wasNotified);
+    }
+
+    public void testTweetObserver(){
+        TweetList list = new TweetList();
+        list.addObserver(this);
+        NormalTweet tweet = new NormalTweet("test");
+        list.addTweet(tweet);
+        wasNotified = Boolean.FALSE;
+        tweet.setText("different");
+        assertTrue(wasNotified);
     }
 
     public void testAddTweet(){
