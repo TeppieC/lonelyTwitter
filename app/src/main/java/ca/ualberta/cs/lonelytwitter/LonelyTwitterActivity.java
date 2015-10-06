@@ -38,14 +38,14 @@ public class LonelyTwitterActivity extends Activity implements MyObserver{
 
 	/** Called when the activity is first created. */
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {//view
 
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
+		super.onCreate(savedInstanceState);//view
+		setContentView(R.layout.main);//view
 
-		bodyText = (EditText) findViewById(R.id.body);
-		Button saveButton = (Button) findViewById(R.id.save);
-		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList);
+		bodyText = (EditText) findViewById(R.id.body);//view
+		Button saveButton = (Button) findViewById(R.id.save);//view
+		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList);//view
 
 		saveButton.setOnClickListener(new View.OnClickListener() {
 
